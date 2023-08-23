@@ -27,8 +27,10 @@ export class Product {
   @Column({ type: 'int4', nullable: false })
   user_id: number;
 
-  //Relaciones
+  @Column({ type: 'current_timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created_at: Date;
 
+  //Relaciones
   @ManyToOne(() => User)
   @JoinColumn({
     name: 'user_id', //el campo que relaciona a mi tabla
