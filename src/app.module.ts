@@ -21,6 +21,7 @@ import { MarcasModule } from './marcas/marcas.module';
     ProductsModule,
     UsersModule,
     MarcasModule,
+    FilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
