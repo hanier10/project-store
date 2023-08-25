@@ -1,4 +1,6 @@
 import {
+  IsDate,
+  IsDateString,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -33,4 +35,12 @@ export class CreateProductDto {
   @IsNumber()
   @IsOptional()
   stock: number;
+
+  @IsString()
+  @IsOptional()
+  filename: string;
+
+  @IsDateString()
+  @IsOptional()
+  created_at: string;
 }
