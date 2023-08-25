@@ -27,7 +27,7 @@ export class Product {
   @Column({ type: 'int4', nullable: false })
   user_id: number;
 
-  @Column({ type: 'current_timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
 
   //Relaciones
