@@ -4,10 +4,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
 import { User } from '../../users/entities/user.entity';
+import { ProductImage } from './product-image.entity';
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn({ type: 'int4' })
@@ -41,4 +43,9 @@ export class Product {
     referencedColumnName: 'id', //este es el id del usuario
   })
   autor: User;
+
+  @OneToMany(() => ProductImage, (productImage) => productImage.product, {
+    cascade: true,
+  })
+  images?: ProductImage[];
 }
