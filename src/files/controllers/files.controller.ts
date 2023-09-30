@@ -1,7 +1,10 @@
 import {
   BadRequestException,
   Controller,
+  Get,
+  Param,
   Post,
+  Res,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -10,7 +13,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { fileFilter } from 'src/helpers/fileFilter.helper';
 import { diskStorage } from 'multer';
 import { fileNamer } from 'src/helpers/fileNamer.helper';
-
+import { Response } from 'express';
 @Controller('files')
 export class FilesController {
   constructor(private readonly filesService: FilesService) {}
@@ -33,8 +36,16 @@ export class FilesController {
       throw new BadRequestException('Asegurese que el archivo es una imagen');
     }
 
-    return {
-      fileName: file.filename,
-    };
+    const url = `${file.filename}`;
+
+    return { url };
+  }
+
+  @Get('product/:imageName')
+  findProduct(@Res() res: Response, @Param('imageName') imageName: string) {
+    const path = this.filesService.getStaticImageName(imageName);
+
+    //return path;
+    res.sendFile(path);
   }
 }
