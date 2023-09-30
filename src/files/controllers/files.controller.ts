@@ -48,4 +48,12 @@ export class FilesController {
     //return path;
     res.sendFile(path);
   }
+
+  @Get('user/:imageName')
+  findUser(@Res() res: Response, @Param('imageName') imageName: string) {
+    const path = this.filesService.getStaticImageName(imageName);
+
+    //return path;
+    res.sendFile(path);
+  }
 }

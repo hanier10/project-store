@@ -13,7 +13,7 @@ export class FilesService {
     //Si no existe la imagen al buscarla en la ruta entonces:
     if (!existsSync(path)) {
       throw new BadRequestException(
-        `No existe un producto con la imagen ${imageName}`,
+        `No existe un registro con la imagen ${imageName}`,
       );
     }
 
