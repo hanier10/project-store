@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { UserImage } from './user-image.entity';
 
 @Entity()
 export class User {
@@ -8,7 +9,7 @@ export class User {
   @Column({ type: 'varchar', length: 100, nullable: false })
   name: string;
 
-  @Column({ type: 'varchar', length: 30, nullable: false })
+  @Column({ type: 'varchar', nullable: false })
   password: string;
 
   @Column({ type: 'varchar', nullable: false })
@@ -19,4 +20,12 @@ export class User {
 
   @Column({ type: 'boolean', default: true })
   active: boolean;
+
+  @Column({ type: 'text', array: true, default: ['user'] })
+  roles: string[];
+
+  @OneToMany(() => UserImage, (userImage) => userImage.user, {
+    cascade: true,
+  })
+  images?: UserImage[];
 }

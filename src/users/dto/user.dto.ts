@@ -1,4 +1,5 @@
 import {
+  IsArray,
   IsBoolean,
   IsNotEmpty,
   IsNumber,
@@ -19,7 +20,7 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
-  @MaxLength(30)
+  @MaxLength(50)
   password: string;
 
   @IsString()
@@ -33,4 +34,9 @@ export class CreateUserDto {
   @IsBoolean()
   @IsOptional()
   active: boolean;
+
+  @IsArray({ each: true })
+  @IsString()
+  @IsOptional()
+  images?: string[];
 }
